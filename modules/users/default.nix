@@ -5,9 +5,24 @@
 #
 { pkgs, lib, ... }:
 let
+  homeManager = builtins.fetchGit {
+    url = "https://github.com/nix-community/home-manager.git";
+    rev = "abfb4cde51856dbee909f373b59cd941f51c2170";
+    ref = "release-20.09";
+  };
+
   mkDefault = lib.mkOverride ((lib.mkDefault null).priority - 1);
 in
 {
+  imports = [ (import "${homeManager}/nixos") ];
+
+  systemd.services."home-manager-ugly-hack" = {
+    script = "mkdir -p /nix/var/nix/profiles/per-user/hayden && chown hayden:users /nix/var/nix/profiles/per-user/hayden";
+    path = [ pkgs.coreutils ];
+    before = [ "home-manager-hayden.service" ];
+    wantedBy = [ "multi-user.target" ];
+  };
+
   users.mutableUsers = false;
 
   users.groups.hayden = {};
@@ -27,5 +42,9 @@ in
     extraGroups = [ "wheel" ];
 
     shell = lib.mkDefault pkgs.bash;
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
   };
 }

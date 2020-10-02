@@ -8,6 +8,7 @@
   imports = [
     ../users ../shell ../ssh ../nix ../xdg
     ./networking ./git ./browser ./sound ./locale ./podman
+    ./terminal
   ];
 
   environment.systemPackages = with pkgs;

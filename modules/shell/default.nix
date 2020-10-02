@@ -6,7 +6,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./alias
+    ./alias ./direnv ./less ./tmux
   ];
 
   environment.systemPackages = with pkgs; [
@@ -32,6 +32,7 @@
     lshw
     mtools
     neofetch
+    nixops
     nmap
     ntfs3g
     (import ./nvim)

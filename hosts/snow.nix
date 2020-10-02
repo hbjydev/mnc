@@ -9,6 +9,8 @@
     [
       ../hardware-configuration.nix
       ../modules/workstation
+      ../modules/hardware/ssd
+      ../modules/hardware/cpu/amd.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -25,6 +27,8 @@
   };
 
   time.timeZone = "Europe/London";
+
+  hardware.enableRedistributableFirmware = true;
 
   services.xserver.enable = true;
   services.xserver.layout = "gb";

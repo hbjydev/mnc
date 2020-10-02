@@ -6,4 +6,8 @@
 { ... }:
 {
   imports = [ ./allowUnfree.nix ];
+
+  nix.autoOptimiseStore = true;
+  nix.daemonNiceLevel = 2;
+  nix.trustedUsers = [ "@wheel" ];
 }
