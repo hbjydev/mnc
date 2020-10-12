@@ -44,5 +44,9 @@ in
     "gitlab.com" = {
       publicKeyFile = ./keys/gitlab.keys;
     };
+
+    "git.esptest.co.uk" = {
+      publicKeyFile = ./keys/espgitlab.keys;
+    };
   };
 }

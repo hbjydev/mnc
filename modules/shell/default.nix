@@ -6,7 +6,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./alias ./direnv ./less ./tmux
+    ./bash ./direnv ./less ./tmux
   ];
 
   environment.systemPackages = with pkgs; [

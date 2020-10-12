@@ -8,13 +8,23 @@
   imports =
     [
       ../hardware-configuration.nix
+      ../modules/nix/unstable.nix
+
       ../modules/workstation
-      ../modules/hardware/ssd
+      
       ../modules/hardware/cpu/amd.nix
+      ../modules/hardware/bluetooth.nix
+      ../modules/hardware/gpu/amdgpu.nix
+      ../modules/hardware/ssd
+
+      ../modules/misc/snow-traefik
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
   networking.hostName = "snow";
   networking.useDHCP = false;
@@ -29,13 +39,7 @@
   time.timeZone = "Europe/London";
 
   hardware.enableRedistributableFirmware = true;
-
-  services.xserver.enable = true;
-  services.xserver.layout = "gb";
-
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
-
+ 
   system.stateVersion = "20.09";
 }
 

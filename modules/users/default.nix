@@ -39,7 +39,7 @@ in
     subGidRanges = [ { count = 65536; startGid = 100000; } ];
 
     group = "hayden";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
 
     shell = lib.mkDefault pkgs.bash;
   };

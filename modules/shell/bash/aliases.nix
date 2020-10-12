@@ -39,8 +39,6 @@
     b = "sudo nixos-rebuild switch --keep-going";
     no = "nixos-option";
 
-    docker = "podman";
-
     ssh = "TERM=xterm-256color ssh";
   };
 }

@@ -6,11 +6,20 @@
 { pkgs, ... }:
 {
   imports = [
-    ../users ../shell ../ssh ../nix ../xdg
-    ./networking ./git ./browser ./sound ./locale ./podman
-    ./terminal
+    ../users ../shell ../ssh ../nix
+    ./networking ./git ./browser ./sound ./locale
+    ./docker # ./podman
+    ./terminal ./windowing
   ];
 
   environment.systemPackages = with pkgs;
-    [ mosh mpv qemu youtube-dl chromium ];
+    [
+      mosh mpv qemu youtube-dl chromium
+      xclip teams unstable.discord
+      mariadb-client
+    ];
+
+  virtualisation.libvirtd = {
+    enable = true;
+  };
 }

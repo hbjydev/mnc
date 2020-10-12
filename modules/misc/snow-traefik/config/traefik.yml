@@ -1,0 +1,18 @@
+providers:
+  docker:
+    watch: true
+
+entryPoints:
+  web:
+    address: ":80"
+
+  websecure:
+    address: ":443"
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: hayden@itshayden.dev
+      storage: acme.json
+      httpChallenge:
+        entryPoint: web

@@ -20,22 +20,16 @@
   '';
 
   environment.systemPackages = with pkgs;
-    let
-      podman-bin = writeShellScriptBin "podman" ''
-        HOME="$HOME/podman"
-        exec ${podman}/bin/podman "$@"
-      '';
-    in
-      [ podman-bin podman.man runc conmon slirp4netns ];
+      [ podman podman.man runc conmon slirp4netns ];
 
-  users.users.hayden.xdg.config.paths."podman/.config/containers/libpod.conf" =
-    pkgs.writeText "libpod.conf" ''
+  home-manager.users.hayden.home.file.".config/containers/libpod.conf".text =
+    ''
       runtime_path = ["${pkgs.runc}/bin/runc"]
       conman_path = ["${pkgs.conmon}/bin/conman"]
     '';
 
-  users.users.hayden.xdg.config.paths."podman/.config/containers/storage.conf" =
-    pkgs.writeText "storage.conf" ''
+  home-manager.users.hayden.home.file.".config/containers/storage.conf".text =
+    ''
       [storage]
       runroot = "/tmp/hayden"
     '';
